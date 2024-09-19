@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>IntelliQuery</title>
+       <style>
+           body {
+               font-family: Arial, sans-serif;
+               max-width: 800px;
+               margin: 0 auto;
+               padding: 20px;
+               background-color: #f0f0f0;
+           }
+           h1 {
+               color: #333;
+               text-align: center;
+           }
+           #query-form {
+               background-color: white;
+               padding: 20px;
+               border-radius: 8px;
+               box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+           }
+           #query-input {
+               width: 100%;
+               padding: 10px;
+               margin-bottom: 10px;
+               border: 1px solid #ddd;
+               border-radius: 4px;
+           }
+           #submit-btn {
+               background-color: #4CAF50;
+               color: white;
+               padding: 10px 20px;
+               border: none;
+               border-radius: 4px;
+               cursor: pointer;
+           }
+           #submit-btn:hover {
+               background-color: #45a049;
+           }
+           #response {
+               margin-top: 20px;
+               padding: 20px;
+               background-color: white;
+               border-radius: 8px;
+               box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+           }
+       </style>
+   </head>
+   <body>
+       <h1>IntelliQuery</h1>
+       <div id="query-form">
+           <input type="text" id="query-input" placeholder="Enter your query here...">
+           <button id="submit-btn">Submit Query</button>
+       </div>
+       <div id="response"></div>
+       
+       <script>
+           document.getElementById('submit-btn').addEventListener('click', async () => {
+               const query = document.getElementById('query-input').value;
+               
+               const response = document.getElementById('response');
+               response.textContent = 'Loading...';
+               
+               try {
+                   const res = await fetch('/query', {
+                       method: 'POST',
+                       headers: {
+                           'Content-Type': 'application/json',
+                       },
+                       body: JSON.stringify({ text: query }),
+                   });
+                   const data = await res.json();
+                   response.textContent = data.response;
+               } catch (error) {
+                   console.error('Error:', error);
+                   response.textContent = 'An error occurred. Please try again.';
+               }
+           });
+       </script>
+   </body>
+   </html>
