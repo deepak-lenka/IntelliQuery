@@ -1,3 +1,5 @@
+# Assignment Part 2: 
+
 # IntelliQuery
 
 IntelliQuery is an intelligent agent built to fulfill the requirements of the following assignment:
