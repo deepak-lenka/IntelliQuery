@@ -4,7 +4,7 @@
 
 IntelliQuery is an intelligent agent built to fulfill the requirements of the following assignment:
 
-## Assignment Requirements
+
 
 1. Build an Agent that can perform smart actions based on the user's query.
 2. Extend the service and host another endpoint for the agent.
